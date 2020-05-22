@@ -1,0 +1,31 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: cloud-consumer-feign-order80
+spring:
+  application:
+    name: cloud-consumer-feign-order80
+feign:
+  hystrix:
+    enabled: true
+ribbon:
+  ConnectTimeout: 60000 #Ribbon的连接超时时间
+  ReadTimeout: 60000  #Ribbon的数据读取超时时间
+  maxAutoRetries: 0 #重试次数
+logging:
+  level:
+    top.juntech.springcloud.service.PaymentFeignService: debug
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure: hystrix.stream

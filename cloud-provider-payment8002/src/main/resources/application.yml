@@ -1,0 +1,29 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    # 当前数据源操作类型
+    type: com.zaxxer.hikari.HikariDataSource
+    # mysql驱动类
+    url: jdbc:mysql://localhost:13306/db2019?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 199710
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: top.juntech.springcloud.entities
+  mapper-locations: classpath*:mapper/*Mapper.xml
+logging:
+  level:
+    top.juntech.springcloud.mapper: debug
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    hostname: localhost
+#    instance-id: payment8002
+    prefer-ip-address: true
